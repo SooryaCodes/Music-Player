@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Player</title>
+    <!-- Material Ui CDN -->
+    <link
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+      rel="stylesheet"
+    />
+    <!-- Material Ui Font -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
+    <!-- Google Fonts Mulish Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Remix Icons CDN  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <!-- Custom Css Link -->
+    <link rel="stylesheet" href="Assets/css/style.css" />
+  </head>
+
+  <body>
+    <!-- Music Player
+    --------------------------------------------------------------------------------------------------- -->
+    <div class="container">
+      <div class="player-card">
+        <!-- top section -->
+        <div class="cardTopSection">
+          <i class="ri-arrow-left-s-line"></i>
+          <span>NOW PLAYING</span>
+          <i class="ri-more-line"></i>
+        </div>
+        <div class="audioImageContainer">
+          <img
+            src="https://cdnb.artstation.com/p/assets/images/images/029/731/567/large/luna-clavijo-rosas-the-weeknd-blinding-lights-26-08-20-signed.jpg?1598465578"
+            alt=""
+          />
+        </div>
+        <!-- audio info -->
+        <div class="audioInfoContainer">
+          <div class="left-section">
+            <h4>KHALID LOVELY</h4>
+            <span>Don't Smile at Me</span>
+          </div>
+          <div class="right-section">
+            <i class="ri-heart-fill"></i>
+          </div>
+        </div>
+        <!-- audio seek -->
+        <div class="audioSeekContainer">
+          <div class="time"><span>1:28</span><span>-1:28</span></div>
+          <div class="range">
+            <div class="mdc-slider">
+              <input
+                class="mdc-slider__input"
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                name="volume"
+                aria-label="Continuous slider demo"
+              />
+              <div class="mdc-slider__track">
+                <div class="mdc-slider__track--inactive"></div>
+                <div class="mdc-slider__track--active">
+                  <div class="mdc-slider__track--active_fill"></div>
+                </div>
+              </div>
+              <div class="mdc-slider__thumb">
+                <div class="mdc-slider__thumb-knob"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- audio controls -->
+        <div class="audioControls">
+          <div class="left-section">
+              <i class="ri-repeat-2-line controls-left-right"></i>
+          </div>
+          <div class="middle-section">
+            <i class="ri-skip-back-fill next-prev"></i>
+            <i class="ri-play-fill "></i>
+            <i class="ri-skip-forward-fill next-prev"></i>
+          </div>
+          <div class="right-section">
+            <i class="ri-volume-up-line controls-left-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- End Music Player -->
+
+    <!-- Material Ui CDN -->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <!-- Script JS -->
+    <script src="Js/script.js"></script>
+    <!-- Audio JS -->
+    <script src="Js/audio.js"></script>
+  </body>
+</html>
