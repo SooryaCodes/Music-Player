@@ -25,8 +25,10 @@ Variables
 ----------------------------------------------------------------------------------
 */
 let isPlaying = false;
+
 let defaultAudioIndex = 0;
 
+let repeat = false;
 /*
 Volume Range
 ----------------------------------------------------------------------------------
@@ -35,7 +37,18 @@ volumeSldr = new mdc.slider.MDCSlider(
   document.querySelector(".mdc-slider.volume")
 );
 volumeSldr.root.addEventListener("MDCSlider:change", (e) =>
-  changeVolumeIcons(e.detail.value)
+  changeVolume(e.detail.value)
+);
+
+/*
+Music Seek Range
+----------------------------------------------------------------------------------
+*/
+musicSldr = new mdc.slider.MDCSlider(
+  document.querySelector(".mdc-slider.music")
+);
+musicSldr.root.addEventListener("MDCSlider:change", (e) =>
+  console.log(e.detail.value)
 );
 
 /*
@@ -45,23 +58,20 @@ let allMusic = [
   {
     author: "BILLIE EILISH",
     album: "Don't Smile At Me",
-    image:
-      "Assets/Images/Lovely.jpeg",
+    image: "Assets/Images/Lovely.jpeg",
     audio: "Assets/Music/yt1s.com - Billie Eilish Khalid  lovely.mp3",
   },
   {
     author: "WITT LOWRY",
     album: "Into Your Arms",
-    image:
-      "Assets/Images/Into arms (1).jpg",
+    image: "Assets/Images/Into arms (1).jpg",
     audio:
       "Assets/Music/yt1s.com - Witt Lowry  Into Your Arms feat Ava Max Official Music Video.mp3",
   },
   {
     author: "ALEX & RUS",
     album: "Wild Lioness",
-    image:
-      "Assets/Images/Lion.jpg",
+    image: "Assets/Images/Lion.jpg",
     audio: "Assets/Music/Wild Lioness.mpeg",
   },
 ];
@@ -94,6 +104,16 @@ const showAudioInfo = (data) => {
 };
 
 /*
+To Stor Or Repeat Music
+*/
+const stopRepeatMusic = () => {
+  if (!repeat) {
+    isPlaying = false;
+    playBtn.classList.replace("ri-pause-fill", "ri-play-fill");
+  }
+};
+
+/*
 To Play And Pause Music
 */
 const playPauseMusic = () => {
@@ -102,6 +122,9 @@ const playPauseMusic = () => {
     music.play();
     isPlaying = true;
     playBtn.classList.replace("ri-play-fill", "ri-pause-fill");
+
+    //Listener to set isPlayer false & play button when music ends
+    music.addEventListener("ended", stopRepeatMusic);
   } else {
     music.pause();
     isPlaying = false;
@@ -119,8 +142,12 @@ const showVolume = () => {
 /*
 To Change Volume Icons According to Volume Level
 */
-const changeVolumeIcons = (value) => {
-  console.log(value);
+const changeVolume = (value) => {
+
+  // Setting Volume
+  music.volume = value / 100;
+
+  //Changing Volume Icons
   if (value === 0) {
     volumeBtn.classList.replace(volumeBtn.classList[0], "ri-volume-mute-line");
   } else if (value < 40) {
@@ -142,8 +169,12 @@ const nextPrevSong = (status) => {
     if (defaultAudioIndex > allMusic.length - 1) {
       defaultAudioIndex = 0;
       showAudioInfo(allMusic[defaultAudioIndex]);
+      isPlaying = false;
+      playPauseMusic();
     } else {
       showAudioInfo(allMusic[defaultAudioIndex]);
+      isPlaying = false;
+      playPauseMusic();
     }
   } else {
     defaultAudioIndex = defaultAudioIndex - 1;
@@ -151,8 +182,12 @@ const nextPrevSong = (status) => {
     if (defaultAudioIndex === -1) {
       defaultAudioIndex = allMusic.length - 1;
       showAudioInfo(allMusic[defaultAudioIndex]);
+      isPlaying = false;
+      playPauseMusic();
     } else {
       showAudioInfo(allMusic[defaultAudioIndex]);
+      isPlaying = false;
+      playPauseMusic();
     }
   }
 };
@@ -197,5 +232,3 @@ Prev Music
 ----------------------------------------------------------------------------------
 */
 prevBtn.addEventListener("click", () => nextPrevSong("prev"));
-
-// Music Ends
