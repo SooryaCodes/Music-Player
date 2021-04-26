@@ -27,12 +27,13 @@ body {
 }
 .player-card {
   width: 380px;
-  min-height: 560px;
+  min-height: 600px;
   border-radius: 16px;
   background: #edf2ff;
   box-shadow: 5px 5px 10px #d1d5e0, -5px -5px 10px #ffffff;
   display: flex;
   align-items: center;
+  position: relative;
   justify-content: flex-start;
   flex-direction: column;
 }
@@ -179,6 +180,7 @@ body {
   justify-content: flex-end;
 }
 
+
 .controls-left-right {
   font-size: 17px;
   color: rgb(112, 112, 112);
@@ -214,18 +216,15 @@ body {
   color: rgb(98, 30, 255);
   background: #edf2ff;
   border-radius: 13px;
-  box-shadow:
-    -8px -4px 8px 0px #ffffff,
-    8px 4px 12px 0px #d1d9e6,
-    4px 4px 4px 0px #d1d9e6 inset,
-    -4px -4px 4px 0px #ffffff inset;
-
+  box-shadow: -8px -4px 8px 0px #ffffff, 8px 4px 12px 0px #d1d9e6,
+    4px 4px 4px 0px #d1d9e6 inset, -4px -4px 4px 0px #ffffff inset;
 }
 .audioControls .middle-section .ri-play-fill {
   border-radius: 4px;
   width: 60px;
   display: flex;
-  align-items: center;  border-radius: 13px;
+  align-items: center;
+  border-radius: 13px;
 
   font-size: 30px;
   color: rgb(98, 30, 255);
@@ -235,4 +234,30 @@ body {
   box-shadow: 5px 5px 7px #d3d7e3, -5px -5px 7px rgb(255, 255, 255);
 }
 
+/* volume control */
+.volume-container {
+  position: absolute;
+  right: -90px;
+  bottom: 30px;
+  width: 180px;
+  transition: 0.4s ease-in-out;
+  height: 50px;
+  border-radius: 5px;
+  visibility: hidden;
+  opacity: 0;
+  background: #edf2ff;
+  box-shadow: 5px 5px 10px #c9ced9, -5px -5px 10px #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 
+.volume-container.active{
+  visibility: visible;
+  opacity: 1;
+  right: -120;
+}
+.volume {
+  width: 140px;
+}

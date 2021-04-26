@@ -44,15 +44,16 @@
         </div>
         <div class="audioImageContainer">
           <img
-            src="https://cdnb.artstation.com/p/assets/images/images/029/731/567/large/luna-clavijo-rosas-the-weeknd-blinding-lights-26-08-20-signed.jpg?1598465578"
+            src=""
             alt=""
+            id="image"
           />
         </div>
         <!-- audio info -->
         <div class="audioInfoContainer">
           <div class="left-section">
-            <h4>KHALID LOVELY</h4>
-            <span>Don't Smile at Me</span>
+            <h4 id="author">BILLIE EILISH</h4>
+            <span id="album">Don't Smile at Me</span>
           </div>
           <div class="right-section">
             <i class="ri-heart-fill"></i>
@@ -62,7 +63,7 @@
         <div class="audioSeekContainer">
           <div class="time"><span>1:28</span><span>-1:28</span></div>
           <div class="range">
-            <div class="mdc-slider">
+            <div class="mdc-slider music">
               <input
                 class="mdc-slider__input"
                 type="range"
@@ -87,19 +88,43 @@
         <!-- audio controls -->
         <div class="audioControls">
           <div class="left-section">
-              <i class="ri-repeat-2-line controls-left-right"></i>
+            <i class="ri-repeat-2-line controls-left-right"></i>
           </div>
           <div class="middle-section">
-            <i class="ri-skip-back-fill next-prev"></i>
-            <i class="ri-play-fill "></i>
-            <i class="ri-skip-forward-fill next-prev"></i>
+            <i class="ri-skip-back-fill next-prev prev"></i>
+            <i class="ri-play-fill"></i>
+            <i class="ri-skip-forward-fill next next-prev"></i>
           </div>
-          <div class="right-section">
-            <i class="ri-volume-up-line controls-left-right"></i>
+          <div class="right-section volume-sec">
+            <i class="ri-volume-up-line controls-left-right volume-btn"></i>
+            <!-- Volume Section -->
+            <div class="volume-container">
+              <div class="mdc-slider volume">
+                <input
+                  class="mdc-slider__input"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="50"
+                  name="volume"
+                  aria-label="Continuous slider demo"
+                />
+                <div class="mdc-slider__track">
+                  <div class="mdc-slider__track--inactive"></div>
+                  <div class="mdc-slider__track--active">
+                    <div class="mdc-slider__track--active_fill"></div>
+                  </div>
+                </div>
+                <div class="mdc-slider__thumb">
+                  <div class="mdc-slider__thumb-knob"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
 
     <!-- End Music Player -->
 
@@ -108,6 +133,6 @@
     <!-- Script JS -->
     <script src="Js/script.js"></script>
     <!-- Audio JS -->
-    <script src="Js/audio.js"></script>
+    <script src="Js/audioPlayer.js"></script>
   </body>
 </html>
