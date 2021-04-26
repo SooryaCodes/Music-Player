@@ -46,14 +46,14 @@ let allMusic = [
     author: "BILLIE EILISH",
     album: "Don't Smile At Me",
     image:
-      "https://i.insider.com/5e67e76d1122cf797d51e108?width=1100&format=jpeg&auto=webp",
+      "Assets/Images/Lovely.jpeg",
     audio: "Assets/Music/yt1s.com - Billie Eilish Khalid  lovely.mp3",
   },
   {
     author: "WITT LOWRY",
     album: "Into Your Arms",
     image:
-      "https://www.hypestorm.net/wp-content/uploads/2019/06/Into-Your-Arms-Cover-ART.jpg",
+      "Assets/Images/Into arms (1).jpg",
     audio:
       "Assets/Music/yt1s.com - Witt Lowry  Into Your Arms feat Ava Max Official Music Video.mp3",
   },
@@ -61,7 +61,7 @@ let allMusic = [
     author: "ALEX & RUS",
     album: "Wild Lioness",
     image:
-      "https://a10.gaanacdn.com/images/albums/51/2667351/crop_480x480_2667351.jpg",
+      "Assets/Images/Lion.jpg",
     audio: "Assets/Music/Wild Lioness.mpeg",
   },
 ];

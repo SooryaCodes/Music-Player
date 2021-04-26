@@ -10,6 +10,12 @@
 :root {
   --defaultPadding: 35px;
 }
+
+/* Selection */
+::selection{
+  background: #4a2affa9;
+  color: white;
+}
 /* Body */
 
 body {
