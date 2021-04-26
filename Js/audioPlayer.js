@@ -197,3 +197,5 @@ Prev Music
 ----------------------------------------------------------------------------------
 */
 prevBtn.addEventListener("click", () => nextPrevSong("prev"));
+
+// Music Ends
