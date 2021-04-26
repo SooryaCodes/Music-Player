@@ -62,7 +62,7 @@ let allMusic = [
     album: "Wild Lioness",
     image:
       "https://a10.gaanacdn.com/images/albums/51/2667351/crop_480x480_2667351.jpg",
-    audio: "Assets/Music/semeer3.mpeg",
+    audio: "Assets/Music/Wild Lioness.mpeg",
   },
 ];
 
