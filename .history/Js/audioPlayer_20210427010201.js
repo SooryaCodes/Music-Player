@@ -19,9 +19,6 @@ let volumeContainer = document.querySelector(".volume-container");
 let author = document.getElementById("author");
 let album = document.getElementById("album");
 let image = document.getElementById("image");
-
-//Repeat Element
-let repeatBtn = document.querySelector(".repeat-btn")
 /*
 Variables
 ----------------------------------------------------------------------------------
@@ -62,7 +59,7 @@ let allMusic = [{
     author: "BILLIE EILISH",
     album: "Don't Smile At Me",
     image: "Assets/Images/Lovely.jpeg",
-    audio: "Assets/Music/yt1s.com - Billie Eilish Khalid  lovely.mp3",
+    audio: "Assets/Music/semeer_troll3.ogg.ogg",
   },
   {
     author: "WITT LOWRY",
@@ -113,8 +110,6 @@ const stopRepeatMusic = () => {
     isPlaying = false;
     playBtn.classList.replace("ri-pause-fill", "ri-play-fill");
     musicStopped = true;
-  }else{
-    nextPrevSong("next")
   }
 };
 
@@ -215,21 +210,6 @@ const nextPrevSong = (status) => {
   }
 };
 /*
-Repeat Song
-----------------------------------------------------------------------------------
-*/
-const repeatMusic = () => {
-  if (!repeat) {
-    repeat = true;
-    repeatBtn.classList.add("active")
-  } else {
-    repeat = false;
-    repeatBtn.classList.remove("active")
-  }
-
-}
-
-/*
 Event Listeners
 ----------------------------------------------------------------------------------
 */
@@ -273,6 +253,5 @@ prevBtn.addEventListener("click", () => nextPrevSong("prev"));
 
 /*
 Repeat Music
-----------------------------------------------------------------------------------
+cs
 */
-repeatBtn.addEventListener("click", repeatMusic)

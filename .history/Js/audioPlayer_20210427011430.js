@@ -62,13 +62,13 @@ let allMusic = [{
     author: "BILLIE EILISH",
     album: "Don't Smile At Me",
     image: "Assets/Images/Lovely.jpeg",
-    audio: "Assets/Music/yt1s.com - Billie Eilish Khalid  lovely.mp3",
+    audio: "Assets/Music/semeer_troll3.ogg.ogg",
   },
   {
     author: "WITT LOWRY",
     album: "Into Your Arms",
     image: "Assets/Images/Into arms (1).jpg",
-    audio: "Assets/Music/yt1s.com - Witt Lowry  Into Your Arms feat Ava Max Official Music Video.mp3",
+    audio: "Assets/Music/semeer_troll3.ogg.ogg",
   },
   {
     author: "ALEX & RUS",

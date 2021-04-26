@@ -19,9 +19,6 @@ let volumeContainer = document.querySelector(".volume-container");
 let author = document.getElementById("author");
 let album = document.getElementById("album");
 let image = document.getElementById("image");
-
-//Repeat Element
-let repeatBtn = document.querySelector(".repeat-btn")
 /*
 Variables
 ----------------------------------------------------------------------------------
@@ -58,17 +55,19 @@ musicSldr.root.addEventListener("MDCSlider:change", (e) =>
 /*
 All Music
 */
-let allMusic = [{
+let allMusic = [
+  {
     author: "BILLIE EILISH",
     album: "Don't Smile At Me",
     image: "Assets/Images/Lovely.jpeg",
-    audio: "Assets/Music/yt1s.com - Billie Eilish Khalid  lovely.mp3",
+    audio: "Assets/Music/semeer_troll3.ogg.ogg",
   },
   {
     author: "WITT LOWRY",
     album: "Into Your Arms",
     image: "Assets/Images/Into arms (1).jpg",
-    audio: "Assets/Music/yt1s.com - Witt Lowry  Into Your Arms feat Ava Max Official Music Video.mp3",
+    audio:
+      "Assets/Music/yt1s.com - Witt Lowry  Into Your Arms feat Ava Max Official Music Video.mp3",
   },
   {
     author: "ALEX & RUS",
@@ -113,8 +112,6 @@ const stopRepeatMusic = () => {
     isPlaying = false;
     playBtn.classList.replace("ri-pause-fill", "ri-play-fill");
     musicStopped = true;
-  }else{
-    nextPrevSong("next")
   }
 };
 
@@ -215,21 +212,6 @@ const nextPrevSong = (status) => {
   }
 };
 /*
-Repeat Song
-----------------------------------------------------------------------------------
-*/
-const repeatMusic = () => {
-  if (!repeat) {
-    repeat = true;
-    repeatBtn.classList.add("active")
-  } else {
-    repeat = false;
-    repeatBtn.classList.remove("active")
-  }
-
-}
-
-/*
 Event Listeners
 ----------------------------------------------------------------------------------
 */
@@ -270,9 +252,3 @@ Prev Music
 ----------------------------------------------------------------------------------
 */
 prevBtn.addEventListener("click", () => nextPrevSong("prev"));
-
-/*
-Repeat Music
-----------------------------------------------------------------------------------
-*/
-repeatBtn.addEventListener("click", repeatMusic)

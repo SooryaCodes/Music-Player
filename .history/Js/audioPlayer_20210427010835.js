@@ -62,7 +62,7 @@ let allMusic = [{
     author: "BILLIE EILISH",
     album: "Don't Smile At Me",
     image: "Assets/Images/Lovely.jpeg",
-    audio: "Assets/Music/yt1s.com - Billie Eilish Khalid  lovely.mp3",
+    audio: "Assets/Music/semeer_troll3.ogg.ogg",
   },
   {
     author: "WITT LOWRY",
@@ -113,8 +113,6 @@ const stopRepeatMusic = () => {
     isPlaying = false;
     playBtn.classList.replace("ri-pause-fill", "ri-play-fill");
     musicStopped = true;
-  }else{
-    nextPrevSong("next")
   }
 };
 

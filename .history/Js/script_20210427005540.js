@@ -2,12 +2,9 @@
 Music Seek Range
 ----------------------------------------------------------------------------------
 */
-musicSldr = new mdc.slider.MDCSlider(
-  document.querySelector(".mdc-slider.music")
-);
-musicSldr.root.addEventListener("MDCSlider:change", (e) =>
-  console.log(e.detail.value)
-);
+musicSldr = new mdc.slider.MDCSlider(document.querySelector('.mdc-slider.music'));
+musicSldr.root.addEventListener('MDCSlider:change', (e) => console.log(e.detail.value));
+
 
 /*
     let value = 10
@@ -24,3 +21,8 @@ musicSldr.root.addEventListener("MDCSlider:change", (e) =>
       }
 
       */
+
+
+
+
+      
