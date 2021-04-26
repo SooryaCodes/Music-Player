@@ -12,7 +12,6 @@ let nextBtn = document.querySelector(".next");
 let prevBtn = document.querySelector(".prev");
 
 //Volume Elements
-let volumeSection = document.querySelector(".volume-sec");
 let volumeBtn = document.querySelector(".volume-btn");
 let volumeContainer = document.querySelector(".volume-container");
 
@@ -155,6 +154,11 @@ const changeVolume = (value) => {
   } else if (value > 40) {
     volumeBtn.classList.replace(volumeBtn.classList[0], "ri-volume-up-line");
   }
+
+  // Hide Volume Controller
+  setTimeout(() => {
+    volumeContainer.classList.remove("active")
+  }, 1000);
 };
 
 /*
@@ -219,7 +223,7 @@ document.addEventListener("keydown", (e) =>
 /*
 Show Volume Controller
 */
-volumeSection.addEventListener("click", showVolume);
+volumeBtn.addEventListener("click", showVolume);
 
 /*
 Next Music 
