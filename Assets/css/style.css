@@ -37,7 +37,7 @@ body {
 
 .player-card {
   width: 380px;
-  min-height: 600px;
+  height: 600px;
   border-radius: 16px;
   background: #edf2ff;
   box-shadow: 5px 5px 10px #d1d5e0, -5px -5px 10px #ffffff;
@@ -50,7 +50,7 @@ body {
 
 /* Card Top Section */
 .cardTopSection {
-  padding: var(--defaultPadding);
+padding: var(--defaultPadding);
   width: 100%;
   display: flex;
   align-items: center;
@@ -77,7 +77,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 200px;
+  height: 210px;
 }
 
 .audioImageContainer img {
@@ -236,7 +236,6 @@ body {
 }
 
 .audioControls .middle-section .ri-play-fill {
-  border-radius: 4px;
   width: 60px;
   display: flex;
   align-items: center;

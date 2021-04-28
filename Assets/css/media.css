@@ -1,0 +1,80 @@
+/* Responsive Media Query 
+---------------------------------------------------------------------------------- */
+
+/* Max Width 593px
+---------------------------------------------------------------------------------- */
+
+@media screen and (max-width:593px) {
+    .player-card {
+        width: 350px;
+        height: 590px;
+        /* --defaultPadding: 35px; */
+
+    }
+
+    .audioImageContainer {
+        width: 180px;
+        height: 190px;
+    }
+
+    .volume-container {
+        bottom: 25px !important;
+        right: -60px;
+    }
+}
+
+/* Max Width 505px
+---------------------------------------------------------------------------------- */
+
+@media screen and (max-width:505px) {
+    .player-card {
+        width: 320px;
+        height: 540px;
+    }
+
+    .audioImageContainer {
+        width: 140px;
+        height: 150px;
+    }
+
+    .volume-container {
+        bottom: 25px;
+        right: -60px;
+    }
+
+    .audioInfoContainer .left-section h4 {
+        font-size: 19px;
+    }
+
+    .audioInfoContainer .left-section span {
+        font-size: 13px;
+    }
+
+    .next-prev {
+        width: 30px;
+        border-radius: 5px;
+        font-size: 13.5px;
+        height: 30px;
+    }
+
+    .audioControls .middle-section .ri-pause-fill,
+    .audioControls .middle-section .ri-play-fill {
+        width: 50px;
+        height: 50px;
+        border-radius: 9px;
+        font-size: 25px
+    }
+
+
+}
+
+
+/* Max Width 461px
+---------------------------------------------------------------------------------- */
+
+@media screen and (max-width:461px) {
+    .volume-container {
+        bottom:18px !important;
+        right: 30px;
+    }
+}   

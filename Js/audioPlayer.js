@@ -73,8 +73,7 @@ let allMusic = [
     author: "SID SRIRAM",
     album: "Maruvaarthai Pesathe",
     image: "Assets/Images/maruvaarthai-pesathe.jpg",
-    audio:
-      "Assets/Music/Maruvaarthai Pesathey - Masstamilan.In.mp3",
+    audio: "Assets/Music/Maruvaarthai Pesathey - Masstamilan.In.mp3",
   },
   {
     author: "SID SRIRAM",
@@ -122,6 +121,7 @@ const showAudioInfo = (data) => {
   //Music
   music = new Audio(data.audio);
 
+  console.log(music.duration);
   //Author
   author.innerHTML = data.author;
 
@@ -135,7 +135,7 @@ const showAudioInfo = (data) => {
 Audio On Loaded Meta Data (To Display Duration)
 ----------------------------------------------------------------------------------
 */
-  music.addEventListener("loadedmetadata", showDuration);
+  music.addEventListener("loadedmetadata", () => showDuration(music));
 
   /*
 Move Music Sldier
@@ -146,8 +146,8 @@ Move Music Sldier
 /*
 To Display Duration
 */
-const showDuration = () => {
-  let musicDuration = (music.duration / 60).toString().split("");
+const showDuration = (audio) => {
+  let musicDuration = (audio.duration / 60).toString().split("");
   durationElem.innerHTML = `${musicDuration[0]}:${musicDuration[2]}${musicDuration[3]}`;
 };
 /*
