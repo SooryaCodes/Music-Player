@@ -22,6 +22,10 @@ let image = document.getElementById("image");
 
 //Repeat Element
 let repeatBtn = document.querySelector(".repeat-btn");
+
+// Audio Elements
+let currentTimeElem = document.getElementById("currentTime");
+let durationElem = document.getElementById("duration");
 /*
 Variables
 ----------------------------------------------------------------------------------
@@ -85,7 +89,6 @@ let allMusic = [
     audio: "Assets/Music/Po-Urave.mp3",
   },
 
-
   {
     author: "BILLIE EILISH",
     album: "Don't Smile At Me",
@@ -115,6 +118,7 @@ Functions
 To Display Audio Info
 */
 const showAudioInfo = (data) => {
+  console.log(data);
   //Music
   music = new Audio(data.audio);
 
@@ -126,8 +130,26 @@ const showAudioInfo = (data) => {
 
   //Image
   image.src = data.image;
+
+  /*
+Audio On Loaded Meta Data (To Display Duration)
+----------------------------------------------------------------------------------
+*/
+  music.addEventListener("loadedmetadata", showDuration);
+
+  /*
+Move Music Sldier
+*/
+  music.addEventListener("timeupdate", moveMusicSlider);
 };
 
+/*
+To Display Duration
+*/
+const showDuration = () => {
+  let musicDuration = (music.duration / 60).toString().split("");
+  durationElem.innerHTML = `${musicDuration[0]}:${musicDuration[2]}${musicDuration[3]}`;
+};
 /*
 To Stor Or Repeat Music
 */
@@ -145,12 +167,22 @@ const stopRepeatMusic = () => {
 To Move Music Slider
 ----------------------------------------------------------------------------------
 */
-const moveMusicSlider = (value) => {
-  let incValue = value;
-  console.log(incValue);
+const moveMusicSlider = (event) => {
+  let currentTime = music.currentTime;
+  let duration = music.duration;
+  let incValue = (currentTime / duration) * 100;
+
+  // Moving Slider
   musicSldr.inputs[0].value = incValue;
   musicSldr.trackActive.style.transform = `scaleX(${incValue / 100})`;
   musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3}px)`;
+
+  //Setting Duration and Current Time
+  duration = (duration / 60).toString().split("");
+  durationElem.innerHTML = `${duration[0]}:${duration[2]}${duration[3]}`;
+
+  currentTime = (currentTime / 60).toString().split("");
+  currentTimeElem.innerHTML = `${currentTime[0]}:${currentTime[2]}${currentTime[3]}`;
 };
 
 /*
@@ -257,7 +289,7 @@ Event Listeners
 */
 
 /*
-Window On Load
+Window On Load (To Display Music Info)
 ----------------------------------------------------------------------------------
 */
 window.addEventListener("load", () =>
@@ -266,11 +298,13 @@ window.addEventListener("load", () =>
 
 /*
 Play Pause Listener Button
+----------------------------------------------------------------------------------
 */
 playBtn.addEventListener("click", playPauseMusic);
 
 /*
 Play Pause Listener Space Bar
+----------------------------------------------------------------------------------
 */
 document.addEventListener("keydown", (e) =>
   e.code === "Space" ? playPauseMusic() : ""
@@ -278,6 +312,7 @@ document.addEventListener("keydown", (e) =>
 
 /*
 Show Volume Controller
+----------------------------------------------------------------------------------
 */
 volumeBtn.addEventListener("click", showVolume);
 

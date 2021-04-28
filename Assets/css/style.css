@@ -150,7 +150,7 @@ body {
   color: rgb(49, 52, 92);
 }
 
-.audioSeekContainer .time span:nth-child(2) {
+.audioSeekContainer .time span:nth-child(1) {
   color: rgb(125, 69, 230);
 }
 
