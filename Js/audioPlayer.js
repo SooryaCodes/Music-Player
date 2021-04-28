@@ -21,7 +21,7 @@ let album = document.getElementById("album");
 let image = document.getElementById("image");
 
 //Repeat Element
-let repeatBtn = document.querySelector(".repeat-btn")
+let repeatBtn = document.querySelector(".repeat-btn");
 /*
 Variables
 ----------------------------------------------------------------------------------
@@ -61,10 +61,31 @@ All Music
 let allMusic = [
   {
     author: "SID SRIRAM",
+    album: "Yaen Ennai Pirindhaai",
+    image: "Assets/Images/yennai_pirindal.jpg",
+    audio: "Assets/Music/Yean-Ennai-Pirindhaai-MassTamilan.org.mp3",
+  },
+  {
+    author: "SID SRIRAM",
+    album: "Maruvaarthai Pesathe",
+    image: "Assets/Images/maruvaarthai-pesathe.jpg",
+    audio:
+      "Assets/Music/Maruvaarthai Mp3 Song From Enai Noki Paayum Thota Movie.mp3",
+  },
+  {
+    author: "SID SRIRAM",
+    album: "Maate Vinadhuga",
+    image: "Assets/Images/taxiwaala-songs-download-vijay-devarakonda.jpg",
+    audio: "Assets/Music/Maate Vinadhuga - SenSongsMp3.Co.mp3",
+  },
+  {
+    author: "SID SRIRAM",
     album: "Po Urave",
     image: "Assets/Images/crop_480x480_1540609611_2238949.jpg",
     audio: "Assets/Music/Po-Urave.mp3",
   },
+
+
   {
     author: "BILLIE EILISH",
     album: "Don't Smile At Me",
@@ -75,7 +96,8 @@ let allMusic = [
     author: "WITT LOWRY",
     album: "Into Your Arms",
     image: "Assets/Images/Into arms (1).jpg",
-    audio: "Assets/Music/yt1s.com - Witt Lowry  Into Your Arms feat Ava Max Official Music Video.mp3",
+    audio:
+      "Assets/Music/yt1s.com - Witt Lowry  Into Your Arms feat Ava Max Official Music Video.mp3",
   },
 ];
 
@@ -115,7 +137,7 @@ const stopRepeatMusic = () => {
     playBtn.classList.replace("ri-pause-fill", "ri-play-fill");
     musicStopped = true;
   } else {
-    nextPrevSong("next")
+    nextPrevSong("next");
   }
 };
 
@@ -222,13 +244,12 @@ Repeat Song
 const repeatMusic = () => {
   if (!repeat) {
     repeat = true;
-    repeatBtn.classList.add("active")
+    repeatBtn.classList.add("active");
   } else {
     repeat = false;
-    repeatBtn.classList.remove("active")
+    repeatBtn.classList.remove("active");
   }
-
-}
+};
 
 /*
 Event Listeners
@@ -276,4 +297,4 @@ prevBtn.addEventListener("click", () => nextPrevSong("prev"));
 Repeat Music
 ----------------------------------------------------------------------------------
 */
-repeatBtn.addEventListener("click", repeatMusic)
+repeatBtn.addEventListener("click", repeatMusic);
