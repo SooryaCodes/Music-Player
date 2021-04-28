@@ -74,7 +74,7 @@ let allMusic = [
     album: "Maruvaarthai Pesathe",
     image: "Assets/Images/maruvaarthai-pesathe.jpg",
     audio:
-      "Assets/Music/Maruvaarthai Mp3 Song From Enai Noki Paayum Thota Movie.mp3",
+      "Assets/Music/Maruvaarthai Pesathey - Masstamilan.In.mp3",
   },
   {
     author: "SID SRIRAM",
