@@ -58,7 +58,14 @@ musicSldr.root.addEventListener("MDCSlider:change", (e) =>
 /*
 All Music
 */
-let allMusic = [{
+let allMusic = [
+  {
+    author: "SID SRIRAM",
+    album: "Po Urave",
+    image: "Assets/Images/crop_480x480_1540609611_2238949.jpg",
+    audio: "Assets/Music/Po-Urave.mp3",
+  },
+  {
     author: "BILLIE EILISH",
     album: "Don't Smile At Me",
     image: "Assets/Images/Lovely.jpeg",
@@ -69,12 +76,6 @@ let allMusic = [{
     album: "Into Your Arms",
     image: "Assets/Images/Into arms (1).jpg",
     audio: "Assets/Music/yt1s.com - Witt Lowry  Into Your Arms feat Ava Max Official Music Video.mp3",
-  },
-  {
-    author: "ALEX & RUS",
-    album: "Wild Lioness",
-    image: "Assets/Images/Lion.jpg",
-    audio: "Assets/Music/Wild Lioness.mpeg",
   },
 ];
 
@@ -113,7 +114,7 @@ const stopRepeatMusic = () => {
     isPlaying = false;
     playBtn.classList.replace("ri-pause-fill", "ri-play-fill");
     musicStopped = true;
-  }else{
+  } else {
     nextPrevSong("next")
   }
 };
