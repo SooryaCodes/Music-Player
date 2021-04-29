@@ -1,4 +1,5 @@
 /*
+----------------------------------------------------------------------------------
 Getting Needed Elements
 ----------------------------------------------------------------------------------
 */
@@ -26,7 +27,9 @@ let repeatBtn = document.querySelector(".repeat-btn");
 // Audio Elements
 let currentTimeElem = document.getElementById("currentTime");
 let durationElem = document.getElementById("duration");
+
 /*
+----------------------------------------------------------------------------------
 Variables
 ----------------------------------------------------------------------------------
 */
@@ -37,6 +40,15 @@ let defaultAudioIndex = 0;
 let repeat = false;
 
 let musicStopped = false;
+
+let skipValue = 0;
+
+/*
+----------------------------------------------------------------------------------
+Material Io
+----------------------------------------------------------------------------------
+*/
+
 /*
 Volume Range
 ----------------------------------------------------------------------------------
@@ -55,12 +67,12 @@ Music Seek Range
 musicSldr = new mdc.slider.MDCSlider(
   document.querySelector(".mdc-slider.music")
 );
-musicSldr.root.addEventListener("MDCSlider:change", (e) =>
-  console.log(e.detail.value)
-);
+musicSldr.root.addEventListener("MDCSlider:change", (e) => {});
 
 /*
+----------------------------------------------------------------------------------
 All Music
+----------------------------------------------------------------------------------
 */
 let allMusic = [
   {
@@ -109,19 +121,19 @@ Audio
 let music;
 
 /*
+----------------------------------------------------------------------------------
 Functions
 ----------------------------------------------------------------------------------
 */
 
 /*
 To Display Audio Info
+----------------------------------------------------------------------------------
 */
 const showAudioInfo = (data) => {
-  console.log(data);
   //Music
   music = new Audio(data.audio);
 
-  console.log(music.duration);
   //Author
   author.innerHTML = data.author;
 
@@ -139,19 +151,25 @@ Audio On Loaded Meta Data (To Display Duration)
 
   /*
 Move Music Sldier
+----------------------------------------------------------------------------------
 */
-  music.addEventListener("timeupdate", moveMusicSlider);
+  music.addEventListener("timeupdate", () => moveMusicSlider());
 };
 
 /*
 To Display Duration
+----------------------------------------------------------------------------------
 */
 const showDuration = (audio) => {
-  let musicDuration = (audio.duration / 60).toString().split("");
-  durationElem.innerHTML = `${musicDuration[0]}:${musicDuration[2]}${musicDuration[3]}`;
+  //Setting Duration
+  let durationMinute = parseInt(music.duration / 60);
+  let durationSeconds = parseInt(music.duration % 60);
+  duration = `${durationMinute}:${durationSeconds}`;
+  durationElem.innerHTML = duration;
 };
 /*
 To Stor Or Repeat Music
+----------------------------------------------------------------------------------
 */
 const stopRepeatMusic = () => {
   if (!repeat) {
@@ -164,29 +182,82 @@ const stopRepeatMusic = () => {
 };
 
 /*
-To Move Music Slider
-----------------------------------------------------------------------------------
+To Skip Music With Key
 */
-const moveMusicSlider = (event) => {
-  let currentTime = music.currentTime;
+const skipTimeWithKey = (status) => {
+  let skipValue = 0;
+  if (status === "forward") {
+    skipValue = 5;
+  } else {
+    skipValue = -5;
+  }
+
+  let currentTime = music.currentTime + skipValue;
   let duration = music.duration;
   let incValue = (currentTime / duration) * 100;
+  let durationMinute = parseInt(music.duration / 60);
+  let durationSeconds = parseInt(music.duration % 60);
+  let currentMinute = parseInt(currentTime / 60);
+  let currentSeconds = parseInt(currentTime % 60);
+  music.currentTime = currentTime;
 
   // Moving Slider
   musicSldr.inputs[0].value = incValue;
   musicSldr.trackActive.style.transform = `scaleX(${incValue / 100})`;
-  musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3}px)`;
+  if (incValue === 100) {
+    musicSldr.thumbs[0].style.transform = `translateX(307.5px)`;
+  } else {
+    musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3}px)`;
+  }
+
+  //Setting Duration and Current Ti me
+  duration = `${durationMinute}:${durationSeconds}`;
+  durationElem.innerHTML = duration;
+
+  if (currentSeconds < 10) {
+    currentTime = `${currentMinute}:0${currentSeconds}`;
+  } else {
+    currentTime = `${currentMinute}:${currentSeconds}`;
+  }
+  currentTimeElem.innerHTML = currentTime;
+};
+
+/*
+To Move Music Slider
+----------------------------------------------------------------------------------
+*/
+const moveMusicSlider = () => {
+  let currentTime = music.currentTime;
+  let duration = music.duration;
+  let incValue = (currentTime / duration) * 100;
+  let durationMinute = parseInt(music.duration / 60);
+  let durationSeconds = parseInt(music.duration % 60);
+  let currentMinute = parseInt(music.currentTime / 60);
+  let currentSeconds = parseInt(music.currentTime % 60);
+
+  // Moving Slider
+  musicSldr.inputs[0].value = incValue;
+  musicSldr.trackActive.style.transform = `scaleX(${incValue / 100})`;
+  if (incValue === 100) {
+    musicSldr.thumbs[0].style.transform = `translateX(307.5px)`;
+  } else {
+    musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3}px)`;
+  }
 
   //Setting Duration and Current Time
-  duration = (duration / 60).toString().split("");
-  durationElem.innerHTML = `${duration[0]}:${duration[2]}${duration[3]}`;
-
-  currentTime = (currentTime / 60).toString().split("");
-  currentTimeElem.innerHTML = `${currentTime[0]}:${currentTime[2]}${currentTime[3]}`;
+  duration = `${durationMinute}:${durationSeconds}`;
+  durationElem.innerHTML = duration;
+  if (currentSeconds < 10) {
+    currentTime = `${currentMinute}:0${currentSeconds}`;
+  } else {
+    currentTime = `${currentMinute}:${currentSeconds}`;
+  }
+  currentTimeElem.innerHTML = currentTime;
 };
 
 /*
 To Play And Pause Music
+----------------------------------------------------------------------------------
 */
 const playPauseMusic = () => {
   // Checking Whether the Music is Playing Or not
@@ -208,6 +279,7 @@ const playPauseMusic = () => {
 
 /*
 To Show Volume Slider
+----------------------------------------------------------------------------------
 */
 const showVolume = () => {
   volumeContainer.classList.toggle("active");
@@ -215,9 +287,13 @@ const showVolume = () => {
 
 /*
 To Change Volume Icons According to Volume Level
+----------------------------------------------------------------------------------
 */
 const changeVolume = (value) => {
   // Setting Volume
+  if(music.volume===value){
+    value=100
+  }
   music.volume = value / 100;
 
   //Changing Volume Icons
@@ -230,13 +306,16 @@ const changeVolume = (value) => {
   }
 
   // Hide Volume Controller
-  setTimeout(() => {
-    volumeContainer.classList.remove("active");
-  }, 1000);
+  if (volumeContainer.classList[1]) {
+    setTimeout(() => {
+      volumeContainer.classList.remove("active");
+    }, 1000);
+  }
 };
 
 /*
 To Play Next Song
+----------------------------------------------------------------------------------
 */
 const nextPrevSong = (status) => {
   isPlaying === false ? (isPlaying = true) : "";
@@ -284,6 +363,7 @@ const repeatMusic = () => {
 };
 
 /*
+----------------------------------------------------------------------------------
 Event Listeners
 ----------------------------------------------------------------------------------
 */
@@ -292,23 +372,16 @@ Event Listeners
 Window On Load (To Display Music Info)
 ----------------------------------------------------------------------------------
 */
-window.addEventListener("load", () =>
-  showAudioInfo(allMusic[defaultAudioIndex])
-);
+window.addEventListener("load", () => {
+  showAudioInfo(allMusic[defaultAudioIndex]);
+  changeVolume(100);
+});
 
 /*
 Play Pause Listener Button
 ----------------------------------------------------------------------------------
 */
 playBtn.addEventListener("click", playPauseMusic);
-
-/*
-Play Pause Listener Space Bar
-----------------------------------------------------------------------------------
-*/
-document.addEventListener("keydown", (e) =>
-  e.code === "Space" ? playPauseMusic() : ""
-);
 
 /*
 Show Volume Controller
@@ -333,3 +406,64 @@ Repeat Music
 ----------------------------------------------------------------------------------
 */
 repeatBtn.addEventListener("click", repeatMusic);
+
+/*
+----------------------------------------------------------------------------------
+Keyboard Listeners
+----------------------------------------------------------------------------------
+*/
+
+/*
+Play Pause 
+----------------------------------------------------------------------------------
+*/
+document.addEventListener("keypress", (e) =>
+  e.code === "Space" ? playPauseMusic() : ""
+);
+
+/*
+Skip Forward
+----------------------------------------------------------------------------------
+*/
+document.addEventListener("keydown", (e) => {
+  if (e.code === "ArrowRight") {
+    skipTimeWithKey("forward");
+  } else if (e.code === "ArrowLeft") {
+    skipTimeWithKey("backward");
+  }
+});
+
+/*
+Skip To A Time
+----------------------------------------------------------------------------------
+*/
+
+
+/*
+Next and Prev Song 
+*/
+let keysPressed = [];
+document.addEventListener("keydown", (event) => {
+  keysPressed[event.key] = true;
+  if (keysPressed["Shift"] && event.key == "N") {
+    nextPrevSong("next");
+  } else if (keysPressed["Shift"] && event.key == "P") {
+    nextPrevSong("prev");
+  }
+});
+
+document.addEventListener("keyup", (event) => {
+  delete keysPressed[event.key];
+});
+
+/*
+Repeat Music
+----------------------------------------------------------------------------------
+*/
+document.addEventListener("keydown",(e)=>e.code==="KeyR"?repeatMusic():"")
+
+/*
+Mute Music
+----------------------------------------------------------------------------------
+*/
+document.addEventListener("keydown",(e)=>e.code==="KeyM"?changeVolume(0):"")
