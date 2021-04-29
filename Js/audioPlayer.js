@@ -81,6 +81,12 @@ All Music
 */
 let allMusic = [
   {
+    author: "ANIRUDH R",
+    album: "Kanave Kanave",
+    image: "Assets/Images/kanava-kanave.jpg",
+    audio: "Assets/Music/Kanave Kanave - Masstamilan.In-.mp3",
+  },
+  {
     author: "SID SRIRAM",
     album: "Yaen Ennai Pirindhaai",
     image: "Assets/Images/yennai_pirindal.jpg",
