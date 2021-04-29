@@ -67,7 +67,9 @@ Music Seek Range
 musicSldr = new mdc.slider.MDCSlider(
   document.querySelector(".mdc-slider.music")
 );
-musicSldr.root.addEventListener("MDCSlider:change", (e) => {});
+musicSldr.root.addEventListener("MDCSlider:change", (e) => {
+  skipMusicTimeWithClick(e.detail.value);
+});
 
 /*
 ----------------------------------------------------------------------------------
@@ -118,7 +120,7 @@ let allMusic = [
 /*
 Audio
 */
-let music;
+let music = document.getElementById("audio");
 
 /*
 ----------------------------------------------------------------------------------
@@ -132,7 +134,7 @@ To Display Audio Info
 */
 const showAudioInfo = (data) => {
   //Music
-  music = new Audio(data.audio);
+  music.src = data.audio;
 
   //Author
   author.innerHTML = data.author;
@@ -142,31 +144,12 @@ const showAudioInfo = (data) => {
 
   //Image
   image.src = data.image;
-
-  /*
-Audio On Loaded Meta Data (To Display Duration)
-----------------------------------------------------------------------------------
-*/
-  music.addEventListener("loadedmetadata", () => showDuration(music));
-
-  /*
-Move Music Sldier
-----------------------------------------------------------------------------------
-*/
-  music.addEventListener("timeupdate", () => moveMusicSlider());
 };
 
 /*
 To Display Duration
 ----------------------------------------------------------------------------------
 */
-const showDuration = (audio) => {
-  //Setting Duration
-  let durationMinute = parseInt(music.duration / 60);
-  let durationSeconds = parseInt(music.duration % 60);
-  duration = `${durationMinute}:${durationSeconds}`;
-  durationElem.innerHTML = duration;
-};
 /*
 To Stor Or Repeat Music
 ----------------------------------------------------------------------------------
@@ -184,19 +167,10 @@ const stopRepeatMusic = () => {
 /*
 To Skip Music With Key
 */
-const skipTimeWithKey = (status) => {
-  let skipValue = 0;
-  if (status === "forward") {
-    skipValue = 5;
-  } else {
-    skipValue = -5;
-  }
-
+const skipMusicTimeWithKey = (skipValue) => {
   let currentTime = music.currentTime + skipValue;
   let duration = music.duration;
   let incValue = (currentTime / duration) * 100;
-  let durationMinute = parseInt(music.duration / 60);
-  let durationSeconds = parseInt(music.duration % 60);
   let currentMinute = parseInt(currentTime / 60);
   let currentSeconds = parseInt(currentTime % 60);
   music.currentTime = currentTime;
@@ -211,14 +185,34 @@ const skipTimeWithKey = (status) => {
   }
 
   //Setting Duration and Current Ti me
-  duration = `${durationMinute}:${durationSeconds}`;
-  durationElem.innerHTML = duration;
+  currentSeconds < 10
+    ? (currentTime = `${currentMinute}:0${currentSeconds}`)
+    : (currentTime = `${currentMinute}:${currentSeconds}`);
+  currentTimeElem.innerHTML = currentTime;
+};
 
-  if (currentSeconds < 10) {
-    currentTime = `${currentMinute}:0${currentSeconds}`;
-  } else {
-    currentTime = `${currentMinute}:${currentSeconds}`;
-  }
+/*
+To Skip Music With Click
+*/
+const skipMusicTimeWithClick = (sliderValue) => {
+  let currentTime = music.currentTime;
+  let duration = music.duration;
+  let incValue = sliderValue;
+
+  currentTime = (incValue * duration) / 100;
+
+  console.log(currentTime);
+
+  music.currentTime = currentTime;
+
+  //Setting Duration and Current Time
+
+  let currentMinute = parseInt(currentTime / 60);
+  let currentSeconds = parseInt(currentTime % 60);
+
+  currentSeconds < 10
+    ? (currentTime = `${currentMinute}:0${currentSeconds}`)
+    : (currentTime = `${currentMinute}:${currentSeconds}`);
   currentTimeElem.innerHTML = currentTime;
 };
 
@@ -230,28 +224,24 @@ const moveMusicSlider = () => {
   let currentTime = music.currentTime;
   let duration = music.duration;
   let incValue = (currentTime / duration) * 100;
-  let durationMinute = parseInt(music.duration / 60);
-  let durationSeconds = parseInt(music.duration % 60);
+
   let currentMinute = parseInt(music.currentTime / 60);
   let currentSeconds = parseInt(music.currentTime % 60);
 
   // Moving Slider
   musicSldr.inputs[0].value = incValue;
   musicSldr.trackActive.style.transform = `scaleX(${incValue / 100})`;
-  if (incValue === 100) {
-    musicSldr.thumbs[0].style.transform = `translateX(307.5px)`;
+  if (incValue > 60) {
+    musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3.1}px)`;
   } else {
     musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3}px)`;
   }
 
   //Setting Duration and Current Time
-  duration = `${durationMinute}:${durationSeconds}`;
-  durationElem.innerHTML = duration;
-  if (currentSeconds < 10) {
-    currentTime = `${currentMinute}:0${currentSeconds}`;
-  } else {
-    currentTime = `${currentMinute}:${currentSeconds}`;
-  }
+
+  currentSeconds < 10
+    ? (currentTime = `${currentMinute}:0${currentSeconds}`)
+    : (currentTime = `${currentMinute}:${currentSeconds}`);
   currentTimeElem.innerHTML = currentTime;
 };
 
@@ -291,8 +281,8 @@ To Change Volume Icons According to Volume Level
 */
 const changeVolume = (value) => {
   // Setting Volume
-  if(music.volume===value){
-    value=100
+  if (music.volume === value) {
+    value = 100;
   }
   music.volume = value / 100;
 
@@ -318,11 +308,8 @@ To Play Next Song
 ----------------------------------------------------------------------------------
 */
 const nextPrevSong = (status) => {
-  isPlaying === false ? (isPlaying = true) : "";
-  playPauseMusic();
   if (status === "next") {
     defaultAudioIndex = defaultAudioIndex + 1;
-    music = new Audio(allMusic[defaultAudioIndex]);
     if (defaultAudioIndex > allMusic.length - 1) {
       defaultAudioIndex = 0;
       showAudioInfo(allMusic[defaultAudioIndex]);
@@ -335,7 +322,6 @@ const nextPrevSong = (status) => {
     }
   } else {
     defaultAudioIndex = defaultAudioIndex - 1;
-    music = new Audio(allMusic[defaultAudioIndex]);
     if (defaultAudioIndex === -1) {
       defaultAudioIndex = allMusic.length - 1;
       showAudioInfo(allMusic[defaultAudioIndex]);
@@ -427,9 +413,9 @@ Skip Forward
 */
 document.addEventListener("keydown", (e) => {
   if (e.code === "ArrowRight") {
-    skipTimeWithKey("forward");
+    skipMusicTimeWithKey(5);
   } else if (e.code === "ArrowLeft") {
-    skipTimeWithKey("backward");
+    skipMusicTimeWithKey(-5);
   }
 });
 
@@ -437,7 +423,6 @@ document.addEventListener("keydown", (e) => {
 Skip To A Time
 ----------------------------------------------------------------------------------
 */
-
 
 /*
 Next and Prev Song 
@@ -460,10 +445,35 @@ document.addEventListener("keyup", (event) => {
 Repeat Music
 ----------------------------------------------------------------------------------
 */
-document.addEventListener("keydown",(e)=>e.code==="KeyR"?repeatMusic():"")
+document.addEventListener("keydown", (e) =>
+  e.code === "KeyR" ? repeatMusic() : ""
+);
 
 /*
 Mute Music
 ----------------------------------------------------------------------------------
 */
-document.addEventListener("keydown",(e)=>e.code==="KeyM"?changeVolume(0):"")
+document.addEventListener("keydown", (e) =>
+  e.code === "KeyM" ? changeVolume(0) : ""
+);
+
+/*
+Move Music Sldier
+----------------------------------------------------------------------------------
+*/
+music.addEventListener("timeupdate", () => {
+  //Move Music Slider
+  moveMusicSlider();
+
+  /*
+  Audio On Loaded Meta Data (To Display Duration)
+  ----------------------------------------------------------------------------------
+  */
+  music.addEventListener("loadeddata", () => {
+    // Setting Duration
+    let durationMinute = parseInt(music.duration / 60);
+    let durationSeconds = parseInt(music.duration % 60);
+    duration = `${durationMinute}:${durationSeconds}`;
+    durationElem.innerHTML = duration;
+  });
+});
