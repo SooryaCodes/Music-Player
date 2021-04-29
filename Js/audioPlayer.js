@@ -30,6 +30,7 @@ let repeatBtn = document.querySelector(".repeat-btn");
 // Audio Elements
 let currentTimeElem = document.getElementById("currentTime");
 let durationElem = document.getElementById("duration");
+let musicSeekSlider = document.querySelector("#musicSldr");
 
 /*
 ----------------------------------------------------------------------------------
@@ -73,6 +74,12 @@ musicSldr = new mdc.slider.MDCSlider(
 musicSldr.root.addEventListener("MDCSlider:change", (e) => {
   skipMusicTimeWithClick(e.detail.value);
 });
+
+/*
+Music Slider Width
+*/
+let musicSldrWidth = musicSeekSlider.getBoundingClientRect().width;
+console.log(musicSldrWidth);
 
 /*
 ----------------------------------------------------------------------------------
@@ -145,6 +152,14 @@ let music = document.getElementById("audio");
 
 /*
 ----------------------------------------------------------------------------------
+Media Responsive
+----------------------------------------------------------------------------------
+*/
+var media1 = window.matchMedia("(max-width: 593px)");
+var media2 = window.matchMedia("(max-width: 505px)");
+
+/*
+----------------------------------------------------------------------------------
 Functions
 ----------------------------------------------------------------------------------
 */
@@ -199,10 +214,16 @@ const skipMusicTimeWithKey = (skipValue) => {
   // Moving Slider
   musicSldr.inputs[0].value = incValue;
   musicSldr.trackActive.style.transform = `scaleX(${incValue / 100})`;
-  if (incValue === 100) {
-    musicSldr.thumbs[0].style.transform = `translateX(307.5px)`;
-  } else {
-    musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3}px)`;
+
+  if (musicSldrWidth === 252) {
+    console.log("pease");
+    musicSldr.thumbs[0].style.transform = `translateX(${incValue * 2.52}px)`;
+  }else if(musicSldrWidth === 282){
+    console.log("pease");
+    musicSldr.thumbs[0].style.transform = `translateX(${incValue * 2.82}px)`;
+  }else{
+    console.log("pease");
+    musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3.12}px)`;
   }
 
   //Setting Duration and Current Ti me
@@ -252,12 +273,18 @@ const moveMusicSlider = () => {
   // Moving Slider
   musicSldr.inputs[0].value = incValue;
   musicSldr.trackActive.style.transform = `scaleX(${incValue / 100})`;
-  if (incValue === 100) {
-    musicSldr.thumbs[0].style.transform = `translateX(307.5px)`;
-  } else {
-    musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3}px)`;
-  }
 
+
+  if (musicSldrWidth === 252) {
+    console.log("pease");
+    musicSldr.thumbs[0].style.transform = `translateX(${incValue * 2.52}px)`;
+  }else if(musicSldrWidth === 282){
+    console.log("pease");
+    musicSldr.thumbs[0].style.transform = `translateX(${incValue * 2.82}px)`;
+  }else{
+    console.log("pease");
+    musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3.12}px)`;
+  }
   //Setting Duration and Current Time
 
   currentSeconds < 10
