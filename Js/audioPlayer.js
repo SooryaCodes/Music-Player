@@ -16,6 +16,9 @@ let prevBtn = document.querySelector(".prev");
 let volumeBtn = document.querySelector(".volume-btn");
 let volumeContainer = document.querySelector(".volume-container");
 
+// Loader Elements
+let loader= document.querySelector(".loader")
+
 //Audio Info Elements
 let author = document.getElementById("author");
 let album = document.getElementById("album");
@@ -361,6 +364,7 @@ Window On Load (To Display Music Info)
 window.addEventListener("load", () => {
   showAudioInfo(allMusic[defaultAudioIndex]);
   changeVolume(100);
+  loader.classList.remove("active")
 });
 
 /*
