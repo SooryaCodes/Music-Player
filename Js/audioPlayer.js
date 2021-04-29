@@ -199,7 +199,7 @@ const skipMusicTimeWithKey = (skipValue) => {
   // Moving Slider
   musicSldr.inputs[0].value = incValue;
   musicSldr.trackActive.style.transform = `scaleX(${incValue / 100})`;
-  if (incValue > 80) {
+  if (incValue > 90) {
     musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3.1}px)`;
   } else {
     musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3}px)`;
@@ -252,7 +252,7 @@ const moveMusicSlider = () => {
   // Moving Slider
   musicSldr.inputs[0].value = incValue;
   musicSldr.trackActive.style.transform = `scaleX(${incValue / 100})`;
-  if (incValue > 80) {
+  if (incValue > 90) {
     musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3.1}px)`;
   } else {
     musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3}px)`;
