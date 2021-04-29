@@ -78,3 +78,17 @@
         right: 30px;
     }
 }   
+
+
+/* Max Width 1000px
+---------------------------------------------------------------------------------- */
+
+@media screen and (max-width:1000px) {
+#tippy-1,#tippy-2,#tippy-3,#tippy-4,#tippy-5{
+    display:none;
+}
+}   
+
+
+
+
