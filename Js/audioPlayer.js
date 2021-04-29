@@ -79,7 +79,6 @@ musicSldr.root.addEventListener("MDCSlider:change", (e) => {
 Music Slider Width
 */
 let musicSldrWidth = musicSeekSlider.getBoundingClientRect().width;
-console.log(musicSldrWidth);
 
 /*
 ----------------------------------------------------------------------------------
@@ -216,13 +215,10 @@ const skipMusicTimeWithKey = (skipValue) => {
   musicSldr.trackActive.style.transform = `scaleX(${incValue / 100})`;
 
   if (musicSldrWidth === 252) {
-    console.log("pease");
     musicSldr.thumbs[0].style.transform = `translateX(${incValue * 2.52}px)`;
   }else if(musicSldrWidth === 282){
-    console.log("pease");
     musicSldr.thumbs[0].style.transform = `translateX(${incValue * 2.82}px)`;
   }else{
-    console.log("pease");
     musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3.12}px)`;
   }
 
@@ -276,13 +272,10 @@ const moveMusicSlider = () => {
 
 
   if (musicSldrWidth === 252) {
-    console.log("pease");
     musicSldr.thumbs[0].style.transform = `translateX(${incValue * 2.52}px)`;
   }else if(musicSldrWidth === 282){
-    console.log("pease");
     musicSldr.thumbs[0].style.transform = `translateX(${incValue * 2.82}px)`;
   }else{
-    console.log("pease");
     musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3.12}px)`;
   }
   //Setting Duration and Current Time
