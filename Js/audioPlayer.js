@@ -81,6 +81,12 @@ All Music
 */
 let allMusic = [
   {
+    author: "SID SRIRAM",
+    album: "Tharame Tharame",
+    image: "Assets/Images/tharame.jpg",
+    audio: "Assets/Music/Thaarame Thaarame-Masstamilan.In.mp3",
+  },
+  {
     author: "ANIRUDH R",
     album: "Kanave Kanave",
     image: "Assets/Images/kanava-kanave.jpg",
@@ -103,6 +109,12 @@ let allMusic = [
     album: "Maate Vinadhuga",
     image: "Assets/Images/taxiwaala-songs-download-vijay-devarakonda.jpg",
     audio: "Assets/Music/Maate Vinadhuga - SenSongsMp3.Co.mp3",
+  },
+  {
+    author: "SID SRIRAM",
+    album: "Inkem Inkem",
+    image: "Assets/Images/inkem.jpg",
+    audio: "Assets/Music/Inkem Inkem Inkem Kaavaale-Naasongs.me.mp3",
   },
   {
     author: "SID SRIRAM",
