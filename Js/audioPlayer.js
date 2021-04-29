@@ -17,7 +17,7 @@ let volumeBtn = document.querySelector(".volume-btn");
 let volumeContainer = document.querySelector(".volume-container");
 
 // Loader Elements
-let loader= document.querySelector(".loader")
+let loader = document.querySelector(".loader");
 
 //Audio Info Elements
 let author = document.getElementById("author");
@@ -199,8 +199,8 @@ const skipMusicTimeWithKey = (skipValue) => {
   // Moving Slider
   musicSldr.inputs[0].value = incValue;
   musicSldr.trackActive.style.transform = `scaleX(${incValue / 100})`;
-  if (incValue > 90) {
-    musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3.05}px)`;
+  if (incValue === 100) {
+    musicSldr.thumbs[0].style.transform = `translateX(307.5px)`;
   } else {
     musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3}px)`;
   }
@@ -252,8 +252,8 @@ const moveMusicSlider = () => {
   // Moving Slider
   musicSldr.inputs[0].value = incValue;
   musicSldr.trackActive.style.transform = `scaleX(${incValue / 100})`;
-  if (incValue > 90) {
-    musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3.05}px)`;
+  if (incValue === 100) {
+    musicSldr.thumbs[0].style.transform = `translateX(307.5px)`;
   } else {
     musicSldr.thumbs[0].style.transform = `translateX(${incValue * 3}px)`;
   }
@@ -382,7 +382,7 @@ Window On Load (To Display Music Info)
 window.addEventListener("load", () => {
   showAudioInfo(allMusic[defaultAudioIndex]);
   changeVolume(100);
-  loader.classList.remove("active")
+  loader.classList.remove("active");
 });
 
 /*
